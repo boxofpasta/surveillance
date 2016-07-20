@@ -1,20 +1,20 @@
 package com.tianxingli24gmail.surveillance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.TextView;
 
-public class Surveillance extends AppCompatActivity {
+public class OurMenu extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_surveillance);
+        setContentView(R.layout.activity_ourmenu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -26,27 +26,14 @@ public class Surveillance extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        Intent fromPrev = getIntent();
+        String name = fromPrev.getStringExtra("address");
+        TextView text = (TextView) findViewById(R.id.name);
+        text.setText("Account Name: " + name);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_surveillance, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void showFeed(View view) {
+        System.out.println("showing feed...");
     }
 }
